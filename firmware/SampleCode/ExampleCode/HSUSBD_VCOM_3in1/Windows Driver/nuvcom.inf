@@ -1,0 +1,130 @@
+;
+; Windows USB CDC Driver Setup File for Nuvoton-CDC (XP/2000)
+;
+;	(c) Copyright 2008 Recursion Co., Ltd.
+;
+
+[Version]
+Signature="$Windows NT$"
+Provider=%COMPANY%
+DriverVer=04/25/2022,1.0.0.1
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+CatalogFile=nuvcom.cat
+
+[Manufacturer]
+%MFGNAME%=Devices,NT,NTamd64
+
+;--------------------------------------------------------------------------
+; Files
+;--------------------------------------------------------------------------
+
+[DestinationDirs]
+DefaultDestDir=12
+
+;--------------------------------------------------------------------------
+; Device driver
+;--------------------------------------------------------------------------
+
+[NuvotonCDC_DEV.NT]
+Include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=NuvotonCDC_DEV.NT.AddReg
+
+[NuvotonCDC_DEV.NT.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[NuvotonCDC_DEV.NT.Services]
+AddService=usbser,0x00000002,DriverService
+
+;--------------------------------------------------------------------------
+; Services
+;--------------------------------------------------------------------------
+
+[DriverService]
+DisplayName=%SERVICE%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\usbser.sys 
+
+;--------------------------------------------------------------------------
+; Devices
+;--------------------------------------------------------------------------
+
+[Devices.NT]
+%NULINK1%=NuvotonCDC_DEV,USB\VID_0416&PID_511D&MI_01
+%NULINK1%=NuvotonCDC_DEV,USB\VID_0416&PID_511E&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5200&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5201&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5202&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5203&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5204&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5205&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2004&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2005&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2006&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2007&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2008&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2009&MI_01
+%NUBRIDGE0%=NuvotonCDC_DEV,USB\VID_0416&PID_3101&MI_00
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_5204&MI_05
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_5205&MI_05
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_2008&MI_04
+%VCOM0%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_00
+%VCOM1%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_02
+%VCOM2%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_04
+%VCOM3%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_06
+%VCOM4%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_08
+%VCOM5%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_0A
+%VCOM6%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_0C
+
+
+[Devices.NTamd64]
+%NULINK1%=NuvotonCDC_DEV,USB\VID_0416&PID_511D&MI_01
+%NULINK1%=NuvotonCDC_DEV,USB\VID_0416&PID_511E&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5200&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5201&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5202&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5203&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5204&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_5205&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2004&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2005&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2006&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2007&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2008&MI_01
+%NULINK2%=NuvotonCDC_DEV,USB\VID_0416&PID_2009&MI_01
+%NUBRIDGE0%=NuvotonCDC_DEV,USB\VID_0416&PID_3101&MI_00
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_5204&MI_05
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_5205&MI_05
+%NUBRIDGE3%=NuvotonCDC_DEV,USB\VID_0416&PID_2008&MI_04
+%VCOM0%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_00
+%VCOM1%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_02
+%VCOM2%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_04
+%VCOM3%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_06
+%VCOM4%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_08
+%VCOM5%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_0A
+%VCOM6%=NuvotonCDC_DEV,USB\VID_0416&PID_50A1&MI_0C
+
+;--------------------------------------------------------------------------
+; Strings
+;--------------------------------------------------------------------------
+
+[Strings] 
+COMPANY="Nuvoton Co., Ltd."
+MFGNAME="www.nuvoton.com"
+NULINK1="Nu-Link Virtual Com Port"
+NULINK2="Nu-Link2 Virtual Com Port"
+NUBRIDGE0="Nu-Bridge Virtual Com Port UART1"
+NUBRIDGE3="Nu-Link2-Bridge Virtual Com Port"
+VCOM0="Nuvoton VCOM0 Port"
+VCOM1="Nuvoton VCOM1 Port"
+VCOM2="Nuvoton VCOM2 Port"
+VCOM3="Nuvoton VCOM3 Port"
+VCOM4="Nuvoton VCOM4 Port"
+VCOM5="Nuvoton VCOM5 Port"
+VCOM6="Nuvoton VCOM6 Port"
+SERVICE="USB RS-232 Emulation Driver"
